@@ -1,3 +1,15 @@
 .full-width-table {
+  margin-top: 0;
   width: 100%;
+}
+
+.titolo {
+  text-align: center;
+  background-color: #303030;
+  color: rgba(255,255,255,.7);
+  border-bottom: 2px solid rgba(255,255,255,.7);
+}
+
+.titolo h1 { 
+  margin-bottom: 0;
 }
