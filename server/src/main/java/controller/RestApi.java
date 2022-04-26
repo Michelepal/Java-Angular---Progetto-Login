@@ -19,7 +19,7 @@ public class RestApi {
 	@Autowired
 	private Repo repostudenti;
 	
-	@GetMapping(path="/")
+	@GetMapping(path="/studenti2/")
 	public @ResponseBody Iterable<Studente> getAllStudents() {
 		return repostudenti.findAll();
 	}
