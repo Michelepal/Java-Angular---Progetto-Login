@@ -16,13 +16,17 @@ import { ListausersComponent } from './features/listausers/listausers.component'
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { LoginComponent } from './features/login/login.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
     ListausersComponent,
-    
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,8 +41,10 @@ import { MatSortModule } from '@angular/material/sort';
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule, 
-
+    MatSortModule,
+    MatFormFieldModule,
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
