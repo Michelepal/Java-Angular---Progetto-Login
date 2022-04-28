@@ -1,32 +1,23 @@
 package model;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="studenti2")
-@NamedQueries ({@NamedQuery (name
-= "studenti2.findAll()", query = "SELECT * FROM studenti2")})
-public class Studente implements Serializable {
+@Table(name="tabellastudenti")
+public class Studente {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id", nullable=false)
 
-	private Long id;
+	private int id;
 	@Column(name="user", nullable=false)
 	private String user;
 	@Column(name="password", nullable=false)

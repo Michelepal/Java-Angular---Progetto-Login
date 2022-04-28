@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import model.Studente;
 import repository.Repo;
+import services.StudentiDB;
 
 
 @RestController
@@ -17,11 +20,11 @@ import repository.Repo;
 public class RestApi {
 	
 	@Autowired
-	private Repo repostudenti;
+	private StudentiDB studenti;
 	
 	@GetMapping("/studenti")
-	public @ResponseBody Iterable<Studente> getAllStudents() {
-		return repostudenti.findAll();
+	public @ResponseBody List<Studente> getAllStudents() {
+		return studenti.getAllStudents();
 	}
 	
 
