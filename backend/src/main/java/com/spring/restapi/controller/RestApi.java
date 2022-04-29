@@ -1,15 +1,15 @@
 package com.spring.restapi.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.restapi.model.Studente;
 import com.spring.restapi.repository.UserRepository;
 
 
-@Controller
+@RestController
 
 public class RestApi {
 	
@@ -17,7 +17,8 @@ public class RestApi {
 	private UserRepository repostudenti;
 	
 	@GetMapping("/")
-	public @ResponseBody Iterable<Studente> getAllStudents() {
+	@ResponseBody 
+	public Iterable<Studente> getAllStudents() {
 		return repostudenti.findAll();
 	}
 	
