@@ -1,6 +1,5 @@
 package com.spring.restapi.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class RestApi {
 	@Autowired
 	private UserRepository repository;
 	
-	@GetMapping(value="/")
+	@GetMapping("/")
 	@ResponseBody 
 	public List<Studente> getAllStudents() {
 		var studenti = (List<Studente>) repository.findAll();
