@@ -1,4 +1,4 @@
-package model;
+package com.spring.restapi.model;
 
 
 import javax.persistence.Column;
@@ -6,10 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="studenti2")
+//@NamedQueries ({@NamedQuery (name
+//= "studenti.findAll()", query = "SELECT * FROM studenti2")})
 public class Studente {
 
 

@@ -1,20 +1,18 @@
-package services;
-
-import java.util.List;
+package com.spring.restapi.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import model.Studente;
-import repository.Repo;
+import com.spring.restapi.model.Studente;
+import com.spring.restapi.repository.UserRepository;
 
 @Service
 public class StudentiDB implements StudentiService {
 	
 	@Autowired
-	private Repo repository;
+	private UserRepository repository;
 	
-	public List<Studente> getAllStudents() {
+	public Iterable<Studente> getAllStudents() {
 		return repository.findAll();
 		
 	}
