@@ -19,7 +19,6 @@ public class RestApi {
 	private StudentiDB studenti;
 	
 	@GetMapping("/")
-	@ResponseBody 
 	public List<Studente> getAllStudents() {
 		return studenti.getAllStudents();
 	}
