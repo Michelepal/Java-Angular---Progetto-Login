@@ -23,8 +23,9 @@ public class RestApi {
 	@Autowired
 	private StudentiDB studenti;
 	
-	@GetMapping("/studenti")
-	public @ResponseBody List<Studente> getAllStudents() {
+	@GetMapping("/")
+	@ResponseBody 
+	public List<Studente> getAllStudents() {
 		return studenti.getAllStudents();
 	}
 	
