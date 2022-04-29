@@ -1,5 +1,8 @@
 package com.spring.restapi.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +15,10 @@ public class StudentiDB implements StudentiService {
 	@Autowired
 	private UserRepository repository;
 	
-	public Iterable<Studente> getAllStudents() {
-		return repository.findAll();
+	@Override
+	public List<Studente> getAllStudents() {
+		
+		return (List<Studente>) repository.findAll();
 		
 	}
 }

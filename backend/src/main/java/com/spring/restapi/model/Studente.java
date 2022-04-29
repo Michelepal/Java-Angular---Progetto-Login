@@ -33,7 +33,15 @@ public class Studente {
 	@Column(name="anno", nullable=false)
 	private int anno;
 	
-	protected Studente() {}
+	public Studente(int id, String user, String password, int matricola, String nome, int anno) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.password = password;
+		this.matricola = matricola;
+		this.nome = nome;
+		this.anno = anno;
+	}
 
 	public int getId() {
 		return id;
