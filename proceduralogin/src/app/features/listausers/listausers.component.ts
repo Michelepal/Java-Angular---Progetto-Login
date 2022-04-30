@@ -16,6 +16,7 @@ export class ListausersComponent implements AfterViewInit {
   dataSource: ListausersDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  /*aggiungere le colonne da visualizzare in corrispondenza dei dati della entity*/ 
   displayedColumns = ['id', 'name'];
 
   constructor() {
