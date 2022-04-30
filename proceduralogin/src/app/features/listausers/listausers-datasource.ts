@@ -5,12 +5,14 @@ import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
+/*aggiungere i tipi della entity Studente */
 export interface ListausersItem {
   name: string;
   id: number;
 }
 
 // TODO: replace this with real data from your application
+/*da cancellare*/
 const EXAMPLE_DATA: ListausersItem[] = [
   {id: 1, name: 'Hydrogen'},
   {id: 2, name: 'Helium'},
@@ -40,10 +42,11 @@ const EXAMPLE_DATA: ListausersItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class ListausersDataSource extends DataSource<ListausersItem> {
-  data: ListausersItem[] = EXAMPLE_DATA;
+  data: ListausersItem[] = EXAMPLE_DATA; /* inserire qui un array vuoto */
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
+  /*importare il modulo http e iniettarlo nel costruttore, dopodiché fare la chiamata get */
   constructor() {
     super();
   }
