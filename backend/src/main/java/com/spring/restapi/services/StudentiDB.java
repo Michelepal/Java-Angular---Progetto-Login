@@ -17,7 +17,7 @@ public class StudentiDB implements StudentiService {
 	@Override
 	public List<Studente> getAllStudents() {
 		
-		return (List<Studente>) repository.findAll();
+		return repository.findAll();
 		
 	}
 }

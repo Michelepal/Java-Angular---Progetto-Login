@@ -33,6 +33,7 @@ public class Studente {
 	@Column(name="anno", nullable=false)
 	private int anno;
 	
+	public Studente() {}
 	public Studente(int id, String user, String password, int matricola, String nome, int anno) {
 		super();
 		this.id = id;
