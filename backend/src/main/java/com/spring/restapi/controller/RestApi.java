@@ -19,7 +19,7 @@ public class RestApi {
 	@Autowired
 	private StudentiDB repository;
 	
-	@GetMapping("/")
+	@GetMapping("/studenti")
 	@ResponseBody 
 	public List<Studente> getAllStudents() {
 		List<Studente> studenti = repository.getAllStudents();
