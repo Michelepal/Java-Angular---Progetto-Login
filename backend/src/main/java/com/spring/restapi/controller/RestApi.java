@@ -1,4 +1,5 @@
 package com.spring.restapi.controller;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -22,9 +23,18 @@ public class RestApi {
 	@GetMapping("/studenti")
 	@ResponseBody 
 	public List<Studente> getAllStudents() {
-		List<Studente> studenti = repository.getAllStudents();
-		return studenti;
+		
+		return repository.getAllStudents();
 	}
 	
+//	@GetMapping({"/studenti", "/"})
+//	public ModelAndView getAllStudents() {
+//		
+//		ModelAndView studenti = new ModelAndView("index.html");
+//		studenti.addObject("studenti", repository.getAllStudents());
+//		return studenti;
+//		
+//	}
+//	
 
 }

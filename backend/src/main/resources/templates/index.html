@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Home page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<p>
+		<a href="studenti">Get all students</a>
+		<ul th:each="studente: ${studenti}">
+		<li th:text="${studente.nome +', '+ studente.anno}"></li>
+		</ul>
+	</p>
+</body>
+
+</html>
