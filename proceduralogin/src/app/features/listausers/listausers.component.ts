@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { environment } from 'src/environments/environment';
 import { ListausersDataSource, ListausersItem } from './listausers-datasource';
 
 @Component({
@@ -14,13 +16,16 @@ export class ListausersComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<ListausersItem>;
   dataSource: ListausersDataSource;
+  dati: ListausersItem[] = [];
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   /*aggiungere le colonne da visualizzare in corrispondenza dei dati della entity*/ 
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'user', 'password', 'matricola', 'nome', 'anno'];
 
-  constructor() {
+  constructor(private http: HttpClient) {
+    
     this.dataSource = new ListausersDataSource();
+
   }
 
   ngAfterViewInit(): void {

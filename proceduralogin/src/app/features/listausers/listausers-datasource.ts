@@ -3,17 +3,26 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { AppInjector } from '../../app.module';
+
+
 
 // TODO: Replace this with your own data model type
 /*aggiungere i tipi della entity Studente */
 export interface ListausersItem {
-  name: string;
   id: number;
+  user: string;
+  password: string;
+  matricola: number;
+  nome: string;
+  anno: number;
 }
 
 // TODO: replace this with real data from your application
 /*da cancellare*/
-const EXAMPLE_DATA: ListausersItem[] = [
+/* const EXAMPLE_DATA: ListausersItem[] = [
   {id: 1, name: 'Hydrogen'},
   {id: 2, name: 'Helium'},
   {id: 3, name: 'Lithium'},
@@ -34,7 +43,7 @@ const EXAMPLE_DATA: ListausersItem[] = [
   {id: 18, name: 'Argon'},
   {id: 19, name: 'Potassium'},
   {id: 20, name: 'Calcium'},
-];
+]; */
 
 /**
  * Data source for the Listausers view. This class should
@@ -42,14 +51,21 @@ const EXAMPLE_DATA: ListausersItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class ListausersDataSource extends DataSource<ListausersItem> {
-  data: ListausersItem[] = EXAMPLE_DATA; /* inserire qui un array vuoto */
+  data: ListausersItem[] = []; /* inserire qui un array vuoto */
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
+ 
 
-  /*importare il modulo http e iniettarlo nel costruttore, dopodiché fare la chiamata get */
   constructor() {
+    const myService = AppInjector.get(HttpClient);
     super();
+    myService.get<ListausersItem[]>(environment.baseUrl).subscribe(data => { 
+      this.data=data;
+      console.log(this.data);
+    });    
   }
+
+
 
   /**
    * Connect this data source to the table. The table will only update when
@@ -100,7 +116,11 @@ export class ListausersDataSource extends DataSource<ListausersItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
+        case 'anno': return compare(a.anno, b.anno, isAsc);
+        case 'nome': return compare(a.nome, b.nome, isAsc);
+        case 'matricola': return compare(a.matricola, b.matricola, isAsc);
+        case 'password': return compare(a.password, b.password, isAsc);
+        case 'user': return compare(a.user, b.user, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }
@@ -112,3 +132,7 @@ export class ListausersDataSource extends DataSource<ListausersItem> {
 function compare(a: string | number, b: string | number, isAsc: boolean): number {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+function OnInit() {
+  throw new Error('Function not implemented.');
+}
+
