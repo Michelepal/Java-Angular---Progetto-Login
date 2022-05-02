@@ -59,13 +59,6 @@ export class ListausersDataSource extends DataSource<ListausersItem> {
 
   constructor() {
     super();  
-    const myService = AppInjector.get(HttpClient);
-    myService.get<ListausersItem[]>(environment.baseUrl).subscribe(data => { 
-      this.data=data;
-      console.log(this.data);
-    }); 
-    
-   
   }
 
 
