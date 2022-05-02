@@ -4,12 +4,6 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
-import { AppInjector } from '../../app.module';
-import { HttpClient } from '@angular/common/http';
-
-
-
 // TODO: Replace this with your own data model type
 /*aggiungere i tipi della entity Studente */
 export interface ListausersItem {
