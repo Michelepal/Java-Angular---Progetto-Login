@@ -3,9 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+
 import { environment } from 'src/environments/environment';
 import { AppInjector } from '../../app.module';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -57,12 +58,14 @@ export class ListausersDataSource extends DataSource<ListausersItem> {
  
 
   constructor() {
+    super();  
     const myService = AppInjector.get(HttpClient);
-    super();
     myService.get<ListausersItem[]>(environment.baseUrl).subscribe(data => { 
       this.data=data;
       console.log(this.data);
-    });    
+    }); 
+    
+   
   }
 
 
