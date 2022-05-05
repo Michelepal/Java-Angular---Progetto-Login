@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+
 @Entity
 @Table(name = "login")
 public class Login {
@@ -53,5 +56,6 @@ public class Login {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 }
