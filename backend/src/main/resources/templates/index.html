@@ -1,19 +1,31 @@
-<!DOCTYPE html>
+<!DOCTYPE uttonhtml>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Home page</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-	<p>
-		<a href="studenti">Get all students</a>
-		<ul th:each="studente: ${studenti}">
+	 <p>
+		<a href="studenti">Get all studenti</a>
+	<ul th:each="studente: ${studenti}">
 		<li th:text="${studente.nome +', '+ studente.anno}"></li>
-		</ul>
+	</ul>
 	</p>
+
+	<form action="/login" method="post">
+		<label for=user>User: </label> <br>
+		<br>
+		<input type=text name=user id="user"/> <br>
+		<br>
+		<label for=password>Password:</label> <br>
+		<br>
+		<input type=text name=password id="user"/><br>
+		<br>
+		<input type="submit" value="Login"></input>
+	</form>
 </body>
 
 </html>
