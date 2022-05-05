@@ -27,7 +27,7 @@ export class LoginComponent {
       /* this.submitEM.emit(this.form.value); */
       this.Login = this.form.value;
       console.log(this.Login);
-      this.http.post<Login>("http://localhost:8080/login", this.Login).subscribe((data: Login) => this.Login = data);
+      this.http.post<Login>("http://localhost:8080/login", this.Login);.subscribe((data: Login) => this.Login = data);
     }
   }
  
