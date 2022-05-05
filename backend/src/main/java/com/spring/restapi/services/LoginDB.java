@@ -16,17 +16,18 @@ public class LoginDB implements LoginService {
 	private LoginRepository repository;
 
 	@Override
-	public void login(String user, String password) {
+	public void login(Login utentelogin) {
+		System.out.println(utentelogin);
 		// TODO Auto-generated method stub
-		Login utente = new Login();
-		utente.setUser(user);
-		utente.setPassword(password);
-		Example<Login> ut = (Example<Login>) utente;
-		if (repository.exists(ut)) {
+//		Login utente = new Login();
+//		utente.setUser(user);
+//		utente.setPassword(password);
+		Example<Login> ut = (Example<Login>) utentelogin;
+		Optional<Login> utenterepo = repository.findOne(ut);
+		if (utenterepo.isPresent()) {
 
-			Optional<Login> utenterepo = repository.findOne(ut);
-			if (utenterepo.get().getUser() == utente.getUser()
-					&& utenterepo.get().getPassword() == utente.getPassword()) {
+			
+			if (utenterepo.equals(utentelogin)) {
 
 				System.out.println("Utente Loggato");
 			} else {

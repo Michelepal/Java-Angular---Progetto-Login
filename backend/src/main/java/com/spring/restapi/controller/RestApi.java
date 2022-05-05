@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.restapi.model.Login;
 import com.spring.restapi.model.Studente;
 import com.spring.restapi.repository.UserRepository;
 import com.spring.restapi.services.LoginDB;
@@ -46,9 +48,9 @@ public class RestApi {
 //	
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(path="/login", method=RequestMethod.POST)
-	@ResponseBody
-	public void login(String user, String password) {
-		loginDB.login(user, password);
+	public void login(@RequestBody Login utentelogin) {
+		System.out.println(utentelogin);
+		loginDB.login(utentelogin);
 	}
 
 }

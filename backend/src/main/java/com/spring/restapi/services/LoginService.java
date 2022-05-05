@@ -1,7 +1,8 @@
 package com.spring.restapi.services;
 
+import com.spring.restapi.model.Login;
 
 public interface LoginService {
 	
-	public void login(String user, String password);
+	public void login(Login utentelogin);
 }
