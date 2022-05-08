@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.restapi.model.Studente;
 import com.spring.restapi.services.StudentiDB;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 
 public class RestApi {
 
 	@Autowired
 	private StudentiDB repository;
-	@CrossOrigin(origins = "http://localhost:4200")
+	
 	@GetMapping("/studenti")
 	@ResponseBody
 	public List<Studente> getAllStudents() {
