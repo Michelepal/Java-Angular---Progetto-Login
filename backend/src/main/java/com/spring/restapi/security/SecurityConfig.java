@@ -16,29 +16,37 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-		http.cors().and().authorizeRequests()
-				.antMatchers("/studenti").hasRole("ADMIN").anyRequest().authenticated();
+		 http
+	        .httpBasic()
+	            .and()
+	        .authorizeRequests()
+	            .antMatchers("/").permitAll()
+	            .and()
+	        .authorizeRequests()
+	            .antMatchers("/studenti").permitAll()
+	            .anyRequest().authenticated()
+	            .and()
+	        .formLogin().loginPage("/")
+	            .permitAll();
+		
 	}
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication().withUser("admin").password("{noop}password").roles("ADMIN");
 	}
-	
-	 @Bean
-	  CorsConfigurationSource corsConfigurationSource() 
-	  {
-	    CorsConfiguration configuration = new CorsConfiguration();
-	    configuration.setAllowedOrigins(Arrays.asList("https://localhost:4200"));
-	    configuration.setAllowedMethods(Arrays.asList("GET","POST"));
-	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	    source.registerCorsConfiguration("/**", configuration);
-	    return source;
-	  }
+
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("https://localhost:4200"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
 
 }
