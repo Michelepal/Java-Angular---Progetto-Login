@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.restapi.model.Studente;
+import com.spring.restapi.security.SecurityConfig;
 import com.spring.restapi.services.StudentiDB;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -22,6 +23,7 @@ public class RestApi {
 
 	@Autowired
 	private StudentiDB repository;
+	private SecurityConfig config;
 	
 	@GetMapping("/studenti")
 	@ResponseBody
@@ -34,6 +36,8 @@ public class RestApi {
 	@CrossOrigin(origins = "http://localhost:4200")
 
 	public String login(@RequestParam String user, @RequestParam String password) {
+		
+		
 		return user + " "+ password;
 	}
 

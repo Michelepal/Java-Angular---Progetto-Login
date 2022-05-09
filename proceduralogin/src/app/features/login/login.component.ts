@@ -28,10 +28,10 @@ export class LoginComponent {
       /* this.submitEM.emit(this.form.value); */
       this.Login = this.form.value;
       console.log(this.Login.username, this.Login.password);
-      this.http.post<Login>(`http://localhost:8080/login/entra?user=${this.Login.username}&password=${this.Login.password}`, this.Login).subscribe((data: Login) => {
-        this.Login = data;
+      this.http.post(`http://localhost:8080/login/entra?user=${this.Login.username}&password=${this.Login.password}`, this.Login, {responseType: 'text'}).subscribe(response => {
+       console.log(response);
         this.login.login();
-      }, error => console.log(error));
+      }, error => console.log(error.message));
     }
   }
  
