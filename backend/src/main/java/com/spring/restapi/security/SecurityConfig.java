@@ -23,11 +23,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeRequests().antMatchers("/").permitAll().and().authorizeRequests()
-				.antMatchers("/studenti").permitAll().anyRequest().authenticated().and().csrf().disable()
-				.cors(cors -> cors.disable());
-
-		http.build();
+//		http.httpBasic().and().authorizeRequests().antMatchers("/").permitAll().and().authorizeRequests()
+//				.antMatchers("/studenti").permitAll().anyRequest().authenticated().and().csrf().disable()
+//				.cors(cors -> cors.disable());
+//
+//		http.build();
+		http.authorizeRequests().antMatchers("/lista").hasRole("ADMIN").antMatchers("/").permitAll().and().formLogin()
+				.loginPage("/").and().csrf().disable();
 	}
 
 	@Autowired

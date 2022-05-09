@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Login } from 'src/app/model/login';
+import { LoginService } from 'src/app/services/login-service.service';
 
 
 
@@ -14,7 +15,7 @@ export class LoginComponent {
   Login!: Login; 
   error: string | null | undefined;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private login: LoginService) {}
 
   /* @Output() submitEM = new EventEmitter(); */
   form: FormGroup = new FormGroup({
@@ -27,7 +28,10 @@ export class LoginComponent {
       /* this.submitEM.emit(this.form.value); */
       this.Login = this.form.value;
       console.log(this.Login);
-      this.http.post<Login>("http://localhost:8080/login/entra", this.Login).subscribe((data: Login) => this.Login = data, error => console.log(error));
+      this.http.post<Login>("http://localhost:8080/login/entra", this.Login).subscribe((data: Login) => {
+        this.Login = data;
+        this.login.login();
+      }, error => console.log(error));
     }
   }
  
