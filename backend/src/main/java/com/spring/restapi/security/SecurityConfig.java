@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //		http.build();
 		http.authorizeRequests().antMatchers("/lista").hasRole("ADMIN").antMatchers("/").permitAll().and().formLogin()
-				.loginPage("/").and().csrf().disable();
+				.loginPage("/").permitAll().and().csrf().disable().httpBasic();
 	}
 
 	@Autowired

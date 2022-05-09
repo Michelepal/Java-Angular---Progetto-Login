@@ -27,8 +27,8 @@ export class LoginComponent {
     if (this.form.valid) {
       /* this.submitEM.emit(this.form.value); */
       this.Login = this.form.value;
-      console.log(this.Login);
-      this.http.post<Login>("http://localhost:8080/login/entra", this.Login).subscribe((data: Login) => {
+      console.log(this.Login.username, this.Login.password);
+      this.http.post<Login>(`http://localhost:8080/login/entra?user=${this.Login.username}&password=${this.Login.password}`, this.Login).subscribe((data: Login) => {
         this.Login = data;
         this.login.login();
       }, error => console.log(error));
