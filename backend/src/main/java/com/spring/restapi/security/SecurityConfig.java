@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -22,10 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().configurationSource(corsConfigurationSource()).and().httpBasic().and().authorizeRequests()
-				.antMatchers("/").permitAll().and().authorizeRequests().antMatchers("/studenti").permitAll()
-				.anyRequest().authenticated().and().formLogin().loginPage("/").permitAll().and().csrf().disable();
-
+		http.httpBasic().and().authorizeRequests().antMatchers("/").permitAll().and().authorizeRequests()
+				.antMatchers("/studenti").permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
+				.permitAll().and().csrf().disable().cors(cors -> cors.disable());
+		
+		http.build();
 	}
 
 	@Autowired
