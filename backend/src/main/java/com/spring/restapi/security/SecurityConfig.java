@@ -24,15 +24,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.httpBasic().and().authorizeRequests().antMatchers("/").permitAll().and().authorizeRequests()
-				.antMatchers("/studenti").permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.permitAll().and().csrf().disable().cors(cors -> cors.disable());
-		
+				.antMatchers("/studenti").permitAll().anyRequest().authenticated().and().csrf().disable()
+				.cors(cors -> cors.disable());
+
 		http.build();
 	}
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("{noop}password").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
 	}
 
 	@Bean
