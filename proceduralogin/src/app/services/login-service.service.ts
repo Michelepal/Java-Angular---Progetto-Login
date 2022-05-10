@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -9,11 +10,13 @@ import { Injectable } from '@angular/core';
 export class LoginService {
   logged: boolean = false;
 
-  constructor(http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router) { 
   }
 
   login() {
     this.logged = true;
+    this.router.navigateByUrl('/lista');
+
   }
 
   islogged() {
