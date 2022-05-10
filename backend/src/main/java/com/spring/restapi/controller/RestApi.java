@@ -26,6 +26,7 @@ public class RestApi {
 	private SecurityConfig config;
 	
 	@GetMapping("/studenti")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@ResponseBody
 	public List<Studente> getAllStudents() {
 
@@ -36,8 +37,7 @@ public class RestApi {
 	@CrossOrigin(origins = "http://localhost:4200")
 
 	public String login(@RequestParam String user, @RequestParam String password) {
-		
-		
+				
 		return user + " "+ password;
 	}
 

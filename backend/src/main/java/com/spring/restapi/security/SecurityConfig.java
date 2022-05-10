@@ -9,6 +9,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -31,23 +35,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		http.httpBasic().and().authorizeRequests().antMatchers("/**").permitAll().and().formLogin()
 //				.loginPage("/").permitAll().and().csrf().disable().cors(cors->cors.disable());
 //		http.build();
-		http.cors(cors->cors.disable()).csrf().disable();
+		http.formLogin().loginPage("/login")
+				.usernameParameter("user").passwordParameter("password").and().cors(cors -> cors.disable()).csrf()
+				.disable();
 	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("{noop}password").roles("ADMIN");
-		auth.inMemoryAuthentication().withUser("user").password("{noop}user").roles("USER");
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.inMemoryAuthentication().withUser("admin").password("{noop}password").roles("ADMIN");
+//		auth.inMemoryAuthentication().withUser("user").password("{noop}user").roles("USER");
+//	}s
+
+	@Bean
+	@Override
+	protected UserDetailsService userDetailsService() {
+		UserDetails user1 = User.withUsername("user").password("user").roles("USER").build();
+		UserDetails user2 = User.withUsername("admin").password("password").roles("ADMIN").build();
+
+		return new InMemoryUserDetailsManager(user1, user2);
 	}
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("https://localhost:4200", "https://localhost:8080"));
+		configuration.setAllowedOrigins(Arrays.asList("https://localhost:4200/**", "https://localhost:8080"));
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
 		configuration.setAllowCredentials(true);
 		// the below three lines will add the relevant CORS response headers
-		configuration.addAllowedOrigin("https://localhost:4200");
+		configuration.addAllowedOrigin("https://localhost:4200/**");
 		configuration.addAllowedHeader("*");
 		configuration.addAllowedMethod("*");
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
