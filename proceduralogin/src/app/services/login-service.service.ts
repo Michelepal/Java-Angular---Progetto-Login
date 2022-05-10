@@ -16,4 +16,8 @@ export class LoginService {
     this.logged = true;
   }
 
+  islogged() {
+    return this.logged;
+  }
+
 }

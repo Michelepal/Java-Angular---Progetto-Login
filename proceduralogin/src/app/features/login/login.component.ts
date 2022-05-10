@@ -30,8 +30,8 @@ export class LoginComponent {
       console.log(this.Login.username, this.Login.password);
       this.http.post(`http://localhost:8080/login/entra?user=${this.Login.username}&password=${this.Login.password}`, this.Login, {responseType: 'text'}).subscribe(response => {
        console.log(response);
-        this.login.login();
       }, error => console.log(error.message));
+      this.login.login();
     }
   }
  

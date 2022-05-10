@@ -28,8 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.cors(cors -> cors.disable());
 //
 //		http.build();
-		http.authorizeRequests().antMatchers("/lista").hasRole("ADMIN").antMatchers("/").permitAll().and().formLogin()
-				.loginPage("/").permitAll().and().csrf().disable().httpBasic();
+//		http.httpBasic().and().authorizeRequests().antMatchers("/**").permitAll().and().formLogin()
+//				.loginPage("/").permitAll().and().csrf().disable().cors(cors->cors.disable());
+//		http.build();
+		http.cors(cors->cors.disable()).csrf().disable();
 	}
 
 	@Autowired
@@ -41,11 +43,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("*"));
+		configuration.setAllowedOrigins(Arrays.asList("https://localhost:4200", "https://localhost:8080"));
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
 		configuration.setAllowCredentials(true);
 		// the below three lines will add the relevant CORS response headers
-		configuration.addAllowedOrigin("*");
+		configuration.addAllowedOrigin("https://localhost:4200");
 		configuration.addAllowedHeader("*");
 		configuration.addAllowedMethod("*");
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

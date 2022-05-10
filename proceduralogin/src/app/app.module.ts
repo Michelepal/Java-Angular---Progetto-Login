@@ -22,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import { LoginService } from './services/login-service.service';
 
 export let AppInjector: Injector;
 
@@ -52,7 +54,7 @@ export let AppInjector: Injector;
     MatInputModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
