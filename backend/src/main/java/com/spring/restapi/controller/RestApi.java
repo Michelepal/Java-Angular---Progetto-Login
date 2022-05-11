@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.restapi.model.Studente;
 import com.spring.restapi.services.StudentiDB;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(path="/", method= {RequestMethod.GET, RequestMethod.POST})
 public class RestApi {
@@ -32,7 +32,6 @@ public class RestApi {
 
 	
 	@GetMapping("/studenti")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@ResponseBody
 	public List<Studente> getAllStudents() {
 
@@ -40,7 +39,6 @@ public class RestApi {
 	}
 	
 	@PostMapping("/login/entra")
-	@CrossOrigin(origins = "http://localhost:4200")
 
 	public String login(@RequestParam String username, @RequestParam String password) {
 		
