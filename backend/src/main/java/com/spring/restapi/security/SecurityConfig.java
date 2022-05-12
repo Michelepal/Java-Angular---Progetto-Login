@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		/* Configurazione Authorization */
 		// TODO Auto-generated method stub
 		http.authorizeRequests().antMatchers("/**").permitAll().antMatchers("/studenti").hasRole("*").and()
-				.formLogin().loginPage("/login").defaultSuccessUrl("/lista").usernameParameter("username").passwordParameter("password").and()
+				.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").and()
 				.cors().and().csrf().disable();
 
 	}

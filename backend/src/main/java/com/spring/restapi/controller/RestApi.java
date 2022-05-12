@@ -6,19 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
 import org.springframework.security.config.authentication.AuthenticationProviderBeanDefinitionParser;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.AuthenticationUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.restapi.model.Login;
 import com.spring.restapi.model.Studente;
 import com.spring.restapi.services.StudentiDB;
 
@@ -31,7 +35,7 @@ public class RestApi {
 	private StudentiDB repository;
 
 	
-	@GetMapping("/studenti")
+	@GetMapping("/studenti") 
 	@ResponseBody
 	public List<Studente> getAllStudents() {
 
@@ -40,12 +44,14 @@ public class RestApi {
 	
 	@PostMapping("/login/entra")
 
-	public String login(@RequestParam String username, @RequestParam String password) {
+	public String login(@RequestBody Login login, Authentication auth) {
 		
+
 		
-		
-		return username + " "+ password;
+		return login.getUsername() + " "+ login.getPassword();
 	}
+	
+
 
 //	@GetMapping({"/studenti", "/"})
 //	public ModelAndView getAllStudents() {
