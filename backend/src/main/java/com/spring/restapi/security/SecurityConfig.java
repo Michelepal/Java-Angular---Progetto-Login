@@ -35,9 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		/* Configurazione Authorization */
 		// TODO Auto-generated method stub
-		http.authorizeRequests().antMatchers("/**").permitAll().antMatchers("/studenti").hasRole("*").and()
-				.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").and()
-				.cors().and().csrf().disable();
+		http.authorizeRequests().antMatchers("https://localhost:4200/**").permitAll()
+				.antMatchers("https://localhost:4200/studenti").hasRole("admin").and().formLogin()
+				.loginPage("https://localhost:4200/login").usernameParameter("username").passwordParameter("password")
+				.and().cors().and().csrf().disable();
 
 	}
 
@@ -50,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 */
 		auth.inMemoryAuthentication().withUser("user").password("user").roles("USER").and().withUser("admin")
 				.password("password").roles("ADMIN");
-		
+
 //		http.httpBasic().and().authorizeRequests().antMatchers("/").permitAll().and().authorizeRequests()
 //				.antMatchers("/studenti").permitAll().anyRequest().authenticated().and().csrf().disable()
 //				.cors(cors -> cors.disable());

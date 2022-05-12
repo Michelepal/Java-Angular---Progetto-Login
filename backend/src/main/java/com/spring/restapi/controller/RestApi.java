@@ -44,11 +44,15 @@ public class RestApi {
 	
 	@PostMapping("/login/entra")
 
-	public String login(@RequestBody Login login, Authentication auth) {
+	public String login(@RequestBody Login login) {
 		
-
+		if (login.isAuthenticated()) {
+			return "autenticato!";
+		} else {
+			return "non autenticato!";
+		}
 		
-		return login.getUsername() + " "+ login.getPassword();
+//		return login.getUsername() + " "+ login.getPassword();
 	}
 	
 
