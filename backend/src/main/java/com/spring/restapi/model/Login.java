@@ -1,41 +1,48 @@
 package com.spring.restapi.model;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="login")
 public class Login {
-	private String username;
-	private String password;
-	private boolean authenticated;
 	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id", nullable=false)
+	private int id;
+	@Column(name="user", nullable=false)
+	private String username;
+	@Column(name="password", nullable=false)
+	private String password;
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean isAuthenticated() {
-		return authenticated;
+
+	public int getId() {
+		return id;
 	}
-	
-	public void setAuthenticated(InMemoryUserDetailsManager user) {
-		
-		UserDetails utente = user.loadUserByUsername(getUsername());
-		if (utente != null) { 
-			this.authenticated = true;
-		} else {
-			this.authenticated = false;
-		}
-		
-		
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
- 

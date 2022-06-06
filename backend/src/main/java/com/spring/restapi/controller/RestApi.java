@@ -3,27 +3,18 @@ package com.spring.restapi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
-import org.springframework.security.config.authentication.AuthenticationProviderBeanDefinitionParser;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.AuthenticationUserDetailsService;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.restapi.model.Login;
 import com.spring.restapi.model.Studente;
+import com.spring.restapi.services.LoginDB;
 import com.spring.restapi.services.StudentiDB;
 
 @CrossOrigin(origins="*")
@@ -33,6 +24,7 @@ public class RestApi {
 
 	@Autowired
 	private StudentiDB repository;
+	private LoginDB login;
 
 	
 	@GetMapping("/studenti") 
@@ -43,32 +35,10 @@ public class RestApi {
 	}
 	
 	@PostMapping("/login/entra")
-
-	public String login(@RequestBody Login login) {
-		
-		if (login.isAuthenticated()) {
-			return "autenticato!";
-		} else {
-			return "non autenticato!";
-		}
-		
-//		return login.getUsername() + " "+ login.getPassword();
+	public boolean login(@RequestBody Login utente) {
+		return login.login(utente);
 	}
+}
 	
 
 
-//	@GetMapping({"/studenti", "/"})
-//	public ModelAndView getAllStudents() {
-//		
-//		ModelAndView studenti = new ModelAndView("index.html");
-//		studenti.addObject("studenti", repository.getAllStudents());
-//		return studenti;
-//		
-//	}
-//	
-//	@CrossOrigin(origins = "http://localhost:4200")
-//	@RequestMapping(path = "/login", method = RequestMethod.POST)
-//	public void login(@RequestBody HttpEntity<String> httpEntity) throws JsonMappingException, JsonProcessingException {
-//	
-//	}
-}
