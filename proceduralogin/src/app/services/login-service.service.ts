@@ -15,7 +15,7 @@ export class LoginService {
 
   login() {
     this.logged = true;
-   /*  this.router.navigateByUrl('/lista'); */
+    this.router.navigateByUrl('/lista'); 
 
   }
 

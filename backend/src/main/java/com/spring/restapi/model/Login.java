@@ -17,16 +17,16 @@ public class Login {
 	@Column(name="id", nullable=false)
 	private int id;
 	@Column(name="user", nullable=false)
-	private String username;
+	private String user;
 	@Column(name="password", nullable=false)
 	private String password;
 
 	public String getUsername() {
-		return username;
+		return user;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.user = username;
 	}
 
 	public String getPassword() {

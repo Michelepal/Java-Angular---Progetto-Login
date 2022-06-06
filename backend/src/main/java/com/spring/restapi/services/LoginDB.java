@@ -1,12 +1,13 @@
 package com.spring.restapi.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
+import org.springframework.stereotype.Service;
 
 import com.spring.restapi.model.Login;
 import com.spring.restapi.repository.LogRepo;
 import com.spring.restapi.repository.UserRepository;
 
+@Service
 public class LoginDB implements LoginService {
 
 	@Autowired
@@ -16,10 +17,19 @@ public class LoginDB implements LoginService {
 	@Override
 	
 	public boolean login(Login login) {
-		Example<Login> utente = (Example<Login>) login;
+	
+		String username = login.getUsername();
+		String password = login.getPassword();
+		Login utente = log.findByUser(username);
 		
-		boolean utentesiste = log.exists(utente);
-		return utentesiste;
+		if (utente != null) {
+			if (!utente.getUsername().equals(username) || !utente.getPassword().equals(password)) {
+				return false;
+			} else if (utente.getPassword().equals(password) && utente.getUsername().equals(username)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 

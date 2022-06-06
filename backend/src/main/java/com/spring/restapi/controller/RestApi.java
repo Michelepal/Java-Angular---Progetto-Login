@@ -24,6 +24,7 @@ public class RestApi {
 
 	@Autowired
 	private StudentiDB repository;
+	@Autowired
 	private LoginDB login;
 
 	

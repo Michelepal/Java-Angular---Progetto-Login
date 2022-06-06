@@ -28,10 +28,15 @@ export class LoginComponent {
       /* this.submitEM.emit(this.form.value); */
       this.Login = this.form.value;
       console.log(this.Login.username, this.Login.password);
-      this.http.post(`http://localhost:8080/login/entra`, this.Login, {responseType: 'text'}).subscribe(response => {
-       console.log(response);
-      }, error => console.log(error));
-      this.login.login();
+      this.http.post(`http://localhost:8080/login/entra`, this.Login, {responseType: 'json'}).subscribe(response => {
+     if (response == true) {
+       this.login.login();
+     } else {
+       this.error = "Utente o password non trovati";
+     }
+     console.log(response);
+      }, error => alert(error));
+      
     }
   }
  /* `http://localhost:8080/login/entra?username=${this.Login.username}&password=${this.Login.password}`*/
